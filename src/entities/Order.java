@@ -33,5 +33,14 @@ public class Order {
 		this.status = status;
 	}
 	
+	public void addItem(OrderItem item) {
+		
+	}
+	
+	public void removeItem(OrderItem item) {
+		
+	}
+	
+	
 
 }
