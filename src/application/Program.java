@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import entities.Client;
 import entities.Order;
+import entities.OrderItem;
 import entities.Product;
 import entities.enums.OrderStatus;
 
@@ -42,7 +43,7 @@ public class Program {
 		Order order = new Order(moment, OrderStatus.valueOf(status));
 		
 		System.out.print("How many items to this order? ");
-		int item = sc.nextInt();
+		int items = sc.nextInt();
 		sc.nextLine();
 		
 		for (int i = 1; i <= item; i++) {
@@ -53,12 +54,18 @@ public class Program {
 			double price = sc.nextDouble();
 			sc.nextLine();
 			Product product = new Product(productName, price);
+			System.out.println("Quantity: ");
+			Integer quantity = sc.nextInt();
+			OrderItem orderItem = new OrderItem(quantity, price);
+			orderItem.addProduct(product);
 		}
 		
 		System.out.println();
 		
 		System.out.println(order);
 		System.out.println(client);
+		
+		System.out.println(String.format("%.2f", orderItem));
 		
 		
 		sc.close();

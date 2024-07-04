@@ -1,10 +1,15 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderItem {
 	
 	private Integer quantity;
 	private Double price;
 	
+	private List<Product> products = new ArrayList<>();
+
 	public OrderItem() {
 	}
 	
@@ -29,6 +34,24 @@ public class OrderItem {
 		this.price = price;
 	}
 	
+	public List<Product> getProduct() {
+		return products;
+	}
 	
+	public void addProduct(Product product) {
+		products.add(product);
+	}
+	
+	public void removeProduct(Product product) {
+		products.remove(product);
+	}
+	
+	public Double subTotal(int quantity, int price) {
+		double totalPrice = 0;
+		for (Product p : product) {
+			totalPrice += price;
+		}
+		return totalPrice;
+	}
 
 }
