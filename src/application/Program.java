@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Client;
+import entities.Order;
 import entities.Product;
 
 public class Program {
@@ -36,6 +37,7 @@ public class Program {
 		System.out.println("Enter order data:");
 		System.out.print("Status: ");
 		String orderStatus = sc.nextLine();
+		Order order = new Order(orderStatus);
 		
 		System.out.print("How many items to this order? ");
 		int item = sc.nextInt();
@@ -47,12 +49,13 @@ public class Program {
 			String productName = sc.nextLine();
 			System.out.print("Product price: ");
 			double price = sc.nextDouble();
+			sc.nextLine();
 			Product product = new Product(name, price);
 		}
 		
-		
-		
-		System.out.print("How many items to this order? ");
+		System.out.println("ORDER SUMMARY:");
+		System.out.println("Order moment: " + new Date());
+		System.out.println("Order status: " + order.getStatus());
 		
 		
 		sc.close();
