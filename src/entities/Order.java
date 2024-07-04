@@ -1,10 +1,12 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import entities.enums.OrderStatus;
 
 public class Order {
+	
+	private static SimpleDateFormat time = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
 	private Date moment;
 	private OrderStatus status;
@@ -41,6 +43,12 @@ public class Order {
 		
 	}
 	
-	
+	public String toString() {
+		StringBuilder order = new StringBuilder();
+		order.append("ORDER SUMMARY: \n");
+		order.append("Order moment: " + time.format(moment) + "\n");
+		order.append("Order status: " + status + "\n");
+		return order.toString();
+	}
 
 }

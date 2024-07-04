@@ -9,6 +9,7 @@ import java.util.Scanner;
 import entities.Client;
 import entities.Order;
 import entities.Product;
+import entities.enums.OrderStatus;
 
 public class Program {
 	
@@ -18,7 +19,7 @@ public class Program {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat birth = new SimpleDateFormat("dd/MM/yyyy");
 		
 		System.out.println("Enter client data:");
 		System.out.print("Name: ");
@@ -26,7 +27,7 @@ public class Program {
 		System.out.print("Email: ");
 		String email = sc.nextLine();
 		System.out.print("Bith date (DD/MM/YYYY): ");
-		Date birthDate = sdf.parse(sc.next());
+		Date birthDate = birth.parse(sc.next());
 		sc.nextLine();
 		Client client = new Client(name, email, birthDate);
 		
@@ -35,9 +36,10 @@ public class Program {
 		
 		
 		System.out.println("Enter order data:");
+		Date moment = new Date();
 		System.out.print("Status: ");
-		String orderStatus = sc.nextLine();
-		Order order = new Order(orderStatus);
+		String status = sc.nextLine();
+		Order order = new Order(moment, OrderStatus.valueOf(status));
 		
 		System.out.print("How many items to this order? ");
 		int item = sc.nextInt();
@@ -50,12 +52,13 @@ public class Program {
 			System.out.print("Product price: ");
 			double price = sc.nextDouble();
 			sc.nextLine();
-			Product product = new Product(name, price);
+			Product product = new Product(productName, price);
 		}
 		
-		System.out.println("ORDER SUMMARY:");
-		System.out.println("Order moment: " + new Date());
-		System.out.println("Order status: " + order.getStatus());
+		System.out.println();
+		
+		System.out.println(order);
+		System.out.println(client);
 		
 		
 		sc.close();
