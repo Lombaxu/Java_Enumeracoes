@@ -52,11 +52,20 @@ public class Order {
 		items.remove(item);
 	}
 	
+	public Double total() {
+		double totalPrice = 0;
+		for (OrderItem p : items) {
+			totalPrice += p.subTotal();
+		}
+		return totalPrice;
+	}
+	
 	public String toString() {
 		StringBuilder order = new StringBuilder();
 		order.append("ORDER SUMMARY: \n");
 		order.append("Order moment: " + time.format(moment) + "\n");
 		order.append("Order status: " + status + "\n");
+		
 		return order.toString();
 	}
 

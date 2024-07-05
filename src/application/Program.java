@@ -24,13 +24,13 @@ public class Program {
 		
 		System.out.println("Enter client data:");
 		System.out.print("Name: ");
-		String name = sc.nextLine();
+		String clientName = sc.nextLine();
 		System.out.print("Email: ");
 		String email = sc.nextLine();
 		System.out.print("Bith date (DD/MM/YYYY): ");
 		Date birthDate = birth.parse(sc.next());
 		sc.nextLine();
-		Client client = new Client(name, email, birthDate);
+		Client client = new Client(clientName, email, birthDate);
 		
 		System.out.println();
 		
@@ -43,20 +43,22 @@ public class Program {
 		Order order = new Order(moment, OrderStatus.valueOf(status));
 		
 		System.out.print("How many items to this order? ");
-		int items = sc.nextInt();
+		int i = sc.nextInt();
 		sc.nextLine();
 		
-		for (int i = 1; i <= item; i++) {
-			System.out.println("Enter #" + i + " item data:");
+		for (int c = 1; c <= i; c++) {
+			System.out.println("Enter #" + c + " item data:");
 			System.out.print("Product name: ");
-			String productName = sc.nextLine();
+			String name = sc.nextLine();
 			System.out.print("Product price: ");
 			double price = sc.nextDouble();
 			sc.nextLine();
-			Product product = new Product(productName, price);
-			System.out.println("Quantity: ");
+			System.out.print("Quantity: ");
 			Integer quantity = sc.nextInt();
+			sc.nextLine();
 			OrderItem orderItem = new OrderItem(quantity, price);
+			order.addItem(orderItem);
+			Product product = new Product(name, price);
 			orderItem.addProduct(product);
 		}
 		
@@ -65,7 +67,11 @@ public class Program {
 		System.out.println(order);
 		System.out.println(client);
 		
-		System.out.println(String.format("%.2f", orderItem));
+		OrderItem orderItem = new OrderItem();
+		
+		System.out.println(order.total());
+		
+		System.out.println(orderItem.toString());
 		
 		
 		sc.close();

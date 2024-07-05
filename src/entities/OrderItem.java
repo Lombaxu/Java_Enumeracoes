@@ -46,12 +46,23 @@ public class OrderItem {
 		products.remove(product);
 	}
 	
-	public Double subTotal(int quantity, int price) {
-		double totalPrice = 0;
-		for (Product p : product) {
-			totalPrice += price;
+	public Double subTotal() {
+		double totalProduct = 0;
+		for (Product p : products) {
+			price = p.getPrice() * quantity;
+			totalProduct += price;
 		}
-		return totalPrice;
+		return totalProduct;
+	}
+	
+	public String toString() {
+		StringBuilder orderItem = new StringBuilder();
+		orderItem.append("Order items:\n");
+		for (Product p : products) {
+			orderItem.append(p.getName() + ", $" + p.getPrice());
+		}
+		
+		return orderItem.toString();
 	}
 
 }

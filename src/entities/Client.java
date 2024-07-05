@@ -7,22 +7,22 @@ public class Client {
 	
 	private static SimpleDateFormat birth = new SimpleDateFormat("dd/MM/yyyy");
 	
-	private String name;
+	private String clientName;
 	private String email;
 	private Date birthDate;
 	
-	public Client(String name, String email, Date birthDate) {
-		this.name = name;
+	public Client(String clientName, String email, Date birthDate) {
+		this.clientName = clientName;
 		this.email = email;
 		this.birthDate = birthDate;
 	}
 
-	public String getName() {
-		return name;
+	public String getClientName() {
+		return clientName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
 	}
 
 	public String getEmail() {
@@ -43,7 +43,7 @@ public class Client {
 	
 	public String toString() {
 		StringBuilder client = new StringBuilder();
-		client.append("Client: " + name + " (" + birth.format(birthDate) + ") - " + email + "\n");
+		client.append("Client: " + clientName + " (" + birth.format(birthDate) + ") - " + email + "\n");
 		return client.toString();
 	}
 
