@@ -27,7 +27,7 @@ public class Program {
 		String clientName = sc.nextLine();
 		System.out.print("Email: ");
 		String email = sc.nextLine();
-		System.out.print("Bith date (DD/MM/YYYY): ");
+		System.out.print("Birth date (DD/MM/YYYY): ");
 		Date birthDate = birth.parse(sc.next());
 		sc.nextLine();
 		Client client = new Client(clientName, email, birthDate);
@@ -53,27 +53,19 @@ public class Program {
 			System.out.print("Product price: ");
 			double price = sc.nextDouble();
 			sc.nextLine();
+			Product product = new Product(name, price);
 			System.out.print("Quantity: ");
 			Integer quantity = sc.nextInt();
 			sc.nextLine();
-			OrderItem orderItem = new OrderItem(quantity, price);
+			OrderItem orderItem = new OrderItem(quantity, price, product);
 			order.addItem(orderItem);
-			Product product = new Product(name, price);
-			orderItem.addProduct(product);
 		}
 		
 		System.out.println();
 		
 		System.out.println(order);
 		System.out.println(client);
-		
-		OrderItem orderItem = new OrderItem();
-		
-		System.out.println(order.total());
-		
-		System.out.println(orderItem.toString());
-		
-		
+			
 		sc.close();
 		
 	}

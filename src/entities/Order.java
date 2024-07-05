@@ -65,7 +65,11 @@ public class Order {
 		order.append("ORDER SUMMARY: \n");
 		order.append("Order moment: " + time.format(moment) + "\n");
 		order.append("Order status: " + status + "\n");
-		
+		order.append("Order Items: \n");
+		for (OrderItem p : items) {
+			order.append(p.getProduct() +", $" + p.getPrice() + ", Quantity: " + p.getQuantity() + ", Subtotal: $" + p.subTotal() + "\n");
+		}
+		order.append("Total price: $" + total());
 		return order.toString();
 	}
 
