@@ -34,13 +34,11 @@ public class Program {
 		
 		System.out.println();
 		
-		
-		
 		System.out.println("Enter order data:");
 		Date moment = new Date();
 		System.out.print("Status: ");
 		String status = sc.nextLine();
-		Order order = new Order(moment, OrderStatus.valueOf(status));
+		Order order = new Order(moment, OrderStatus.valueOf(status), client);
 		
 		System.out.print("How many items to this order? ");
 		int i = sc.nextInt();
@@ -53,18 +51,16 @@ public class Program {
 			System.out.print("Product price: ");
 			double price = sc.nextDouble();
 			sc.nextLine();
-			Product product = new Product(name, price);
 			System.out.print("Quantity: ");
 			Integer quantity = sc.nextInt();
 			sc.nextLine();
-			OrderItem orderItem = new OrderItem(quantity, price, product);
+			OrderItem orderItem = new OrderItem(quantity, price, new Product(name, price));
 			order.addItem(orderItem);
 		}
 		
 		System.out.println();
 		
 		System.out.println(order);
-		System.out.println(client);
 			
 		sc.close();
 		

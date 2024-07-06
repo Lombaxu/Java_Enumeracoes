@@ -14,14 +14,16 @@ public class Order {
 	private Date moment;
 	private OrderStatus status;
 	
+	private Client client;
 	private List<OrderItem> items =  new ArrayList<>();
 
 	public Order() {
 	}
 	
-	public Order(Date moment, OrderStatus status) {
+	public Order(Date moment, OrderStatus status, Client client) {
 		this.moment = moment;
 		this.status = status;
+		this.client = client;
 	}
 	
 	public Date getMoment() {
@@ -38,6 +40,14 @@ public class Order {
 	
 	public void setStatus(OrderStatus status) {
 		this.status = status;
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 	public List<OrderItem> getItems() {
@@ -65,11 +75,13 @@ public class Order {
 		order.append("ORDER SUMMARY: \n");
 		order.append("Order moment: " + time.format(moment) + "\n");
 		order.append("Order status: " + status + "\n");
+		order.append(client);
 		order.append("Order Items: \n");
 		for (OrderItem p : items) {
-			order.append(p.getProduct() +", $" + p.getPrice() + ", Quantity: " + p.getQuantity() + ", Subtotal: $" + p.subTotal() + "\n");
+			order.append(p.getProduct() +", $" + String.format("%.2f", p.getPrice()) +
+			", Quantity: " + p.getQuantity() + ", Subtotal: $" +  String.format("%.2f", p.subTotal()) + "\n");
 		}
-		order.append("Total price: $" + total());
+		order.append("Total price: $" +  String.format("%.2f", total()));
 		return order.toString();
 	}
 
